@@ -29,7 +29,7 @@ allprojects {
 Step 2. Add the dependency
 ~~~
 dependencies {
-	 implementation 'com.github.xiaoshitounen:XLDrawBoard:1.0.0'
+    implementation 'com.github.xiaoshitounen:XLDrawBoard:1.0.0'
 }
 ~~~
 
