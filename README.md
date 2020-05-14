@@ -9,7 +9,7 @@
 
 app模块是使用例子，其运行效果：
 
-![](https://github.com/xiaoshitounen/PageController/blob/master/self_view_page_controller.gif)
+![](https://github.com/xiaoshitounen/XLDrawBoard/blob/master/XLDrawBoard.gif)
 
 
 ### 1. 添加依赖
