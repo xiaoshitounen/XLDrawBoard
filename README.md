@@ -9,7 +9,7 @@
 
 app模块是使用例子，其运行效果：
 
-![](https://github.com/xiaoshitounen/XLDrawBoard/blob/master/XLDrawBoard.gif)
+![](https://android-1300729795.cos.ap-chengdu.myqcloud.com/project/Self_View/XLDrawBoard/XLDrawBoard.gif)
 
 
 ### 1. 添加依赖
