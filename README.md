@@ -90,6 +90,12 @@ public void resumeLast();
  * @return
  */
 public void removeAll();
+
+/**
+ * 管理的方法-保存绘制的图片到系统相册
+ * @return
+ */
+public Bitmap save()
 ~~~
 
 
