@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class XLDrawBoard extends View {
 
@@ -243,13 +243,9 @@ public class XLDrawBoard extends View {
             }
         }
 
-        //保存到系统相册
-        MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, "title", "description");
-        Toast.makeText(getContext(), "保存成功", Toast.LENGTH_SHORT).show();
 
         return bitmap;
     }
-
 
     //setter / getter方法
     public int getLineColor() {

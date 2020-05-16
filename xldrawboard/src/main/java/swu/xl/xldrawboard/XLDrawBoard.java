@@ -243,10 +243,6 @@ public class XLDrawBoard extends View {
             }
         }
 
-        //保存到系统相册
-        MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, "title", "description");
-        Toast.makeText(getContext(), "保存成功", Toast.LENGTH_SHORT).show();
-
         return bitmap;
     }
 

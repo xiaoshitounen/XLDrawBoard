@@ -1,13 +1,14 @@
 package swu.xl.drawboard;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import swu.xl.utils.SaveToAlbumUtil;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.clear:
                 board.removeAll();
                 break;
-
         }
+
     }
+
 }
