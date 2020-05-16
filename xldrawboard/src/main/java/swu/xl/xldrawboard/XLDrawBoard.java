@@ -3,10 +3,12 @@ package swu.xl.xldrawboard;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,7 +42,7 @@ public class XLDrawBoard extends View {
     private List<Graph> graphs;
 
     //用于反撤销功能而存储的线条
-    private List<Graph> last_graphs;
+    private List<Graph> remove_graphs;
 
     /**
      * 构造方法：Java代码初始化
@@ -83,7 +85,7 @@ public class XLDrawBoard extends View {
     private void init() {
         //初始化集合
         graphs = new ArrayList<>();
-        last_graphs = new ArrayList<>();
+        remove_graphs = new ArrayList<>();
 
         //设置背景颜色
         setBackgroundColor(bg_color);
@@ -120,7 +122,6 @@ public class XLDrawBoard extends View {
                 //确定Graph
                 Graph graph = new Graph(temp_path, paint);
                 graphs.add(graph);
-                last_graphs.add(graph);
 
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -178,6 +179,7 @@ public class XLDrawBoard extends View {
         //防止抛出异常，判断线条数量
         if (graphs.size() > 0){
             //移除最后一个线条
+            remove_graphs.add(graphs.get(graphs.size()-1));
             graphs.remove(graphs.size()-1);
 
             //刷新
@@ -189,19 +191,16 @@ public class XLDrawBoard extends View {
      * 管理的方法-反撤销功能的实现
      */
     public void resumeLast(){
-        //防止抛出异常，判断是否能反撤销
-        if (graphs.size() < last_graphs.size()){
-            //最后的操作相同也不可以反撤销
-            if (graphs.get(graphs.size() - 1) != last_graphs.get(last_graphs.size() - 1)) {
-                //获取上一步的索引值
-                int index = graphs.size() - 1 + 1;
-                //取出上一步的线条，加入
-                graphs.add(last_graphs.get(index));
-                //刷新
-                invalidate();
+        //防止抛出异常，判断线条数量
+        if (remove_graphs.size() > 0){
+            //添加到绘制的线条中
+            graphs.add(remove_graphs.get(remove_graphs.size()-1));
+            //移除最后一个线条
+            remove_graphs.remove(remove_graphs.size()-1);
 
-                return;
-            }
+            //刷新
+            invalidate();
+            return;
         }
 
         //小提示
@@ -217,12 +216,40 @@ public class XLDrawBoard extends View {
         if (graphs.size() > 0){
             //移除所有的线条
             graphs.clear();
-            last_graphs.clear();
+            remove_graphs.clear();
 
             //刷新
             invalidate();
         }
     }
+
+    /**
+     * 管理的方法-保存图片
+     * @return
+     */
+    public Bitmap save(){
+        //创建一个bitmap
+        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        //以这个bitmap创建一个画板
+        Canvas canvas = new Canvas(bitmap);
+        //绘制背景
+        canvas.drawColor(bg_color);
+        //绘制线条
+        if (graphs != null){
+            //遍历Graphs数组
+            for (Graph graph : graphs) {
+                //绘制图形
+                canvas.drawPath(graph.path, graph.paint);
+            }
+        }
+
+        //保存到系统相册
+        MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, "title", "description");
+        Toast.makeText(getContext(), "保存成功", Toast.LENGTH_SHORT).show();
+
+        return bitmap;
+    }
+
 
     //setter / getter方法
     public int getLineColor() {
@@ -258,4 +285,5 @@ public class XLDrawBoard extends View {
             lineWidth = 20;
         }
     }
+
 }
