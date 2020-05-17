@@ -93,6 +93,7 @@ public void removeAll();
 
 /**
  * 管理的方法-保存绘制的图片到系统相册
+ * 注意这里只是得到一个需要保存的bitmap，你需要自己保存到系统相册
  * @return
  */
 public Bitmap save()
