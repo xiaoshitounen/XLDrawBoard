@@ -236,6 +236,12 @@ public class XLDrawBoard extends View {
             //刷新
             invalidate();
         }
+
+        //清楚图片
+        if (bitmap != null){
+            bitmap = null;
+            invalidate();
+        }
     }
 
     /**
@@ -249,6 +255,12 @@ public class XLDrawBoard extends View {
         Canvas canvas = new Canvas(bitmap);
         //绘制背景
         canvas.drawColor(bg_color);
+        //绘制图片
+        if (this.bitmap != null){
+            @SuppressLint("DrawAllocation") Rect dct = new Rect(0, 0, getWidth(), getHeight());
+            @SuppressLint("DrawAllocation") Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            canvas.drawBitmap(bitmap,rect,dct,new Paint());
+        }
         //绘制线条
         if (graphs != null){
             //遍历Graphs数组
@@ -268,8 +280,6 @@ public class XLDrawBoard extends View {
      */
     public void drawOldBitmap(Bitmap bitmap){
         this.bitmap = bitmap;
-
-
 
         invalidate();
     }
