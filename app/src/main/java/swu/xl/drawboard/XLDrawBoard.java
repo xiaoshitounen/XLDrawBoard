@@ -7,8 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -148,16 +150,16 @@ public class XLDrawBoard extends View {
      * 重新绘制的过程
      * @param canvas
      */
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        Log.d("TAG","来了");
-
         //是否需要绘制Bitmap
         if (bitmap != null){
-            Log.d("TAG","来了");
-            canvas.drawBitmap(bitmap,0,0,new Paint());
+            @SuppressLint("DrawAllocation") Rect dct = new Rect(0, 0, getWidth(), getHeight());
+            @SuppressLint("DrawAllocation") Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            canvas.drawBitmap(bitmap,rect,dct,new Paint());
         }
 
         //遍历Graphs数组

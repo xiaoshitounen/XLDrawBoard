@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -153,7 +154,9 @@ public class XLDrawBoard extends View {
 
         //是否需要绘制Bitmap
         if (bitmap != null){
-            canvas.drawBitmap(bitmap,getLeft(),getTop(),new Paint());
+            @SuppressLint("DrawAllocation") Rect dct = new Rect(0, 0, getWidth(), getHeight());
+            @SuppressLint("DrawAllocation") Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            canvas.drawBitmap(bitmap,rect,dct,new Paint());
         }
 
         //遍历Graphs数组

@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.size_20:
                 board.setLineWidth(20);
 
-                //Bitmap orgBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+                Bitmap orgBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test);
 
-                //board.drawOldBitmap(orgBitmap);
+                board.drawOldBitmap(orgBitmap);
 
                 break;
 
