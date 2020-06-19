@@ -48,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.size_40:
                 board.setLineWidth(40);
 
+                ExternalStorageUtil.saveBitmapToExternalStoragePrivateFilesDir(
+                        board.save(),
+                        "test.png",
+                        MainActivity.this
+                );
+
                 break;
 
             case R.id.color_red:

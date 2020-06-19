@@ -257,9 +257,9 @@ public class XLDrawBoard extends View {
         canvas.drawColor(bg_color);
         //绘制图片
         if (this.bitmap != null){
-            @SuppressLint("DrawAllocation") Rect dct = new Rect(0, 0, getWidth(), getHeight());
-            @SuppressLint("DrawAllocation") Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-            canvas.drawBitmap(bitmap,rect,dct,new Paint());
+            @SuppressLint("DrawAllocation") Rect dct = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            @SuppressLint("DrawAllocation") Rect rect = new Rect(0, 0, this.bitmap.getWidth(), this.bitmap.getHeight());
+            canvas.drawBitmap(this.bitmap,rect,dct,new Paint());
         }
         //绘制线条
         if (graphs != null){
