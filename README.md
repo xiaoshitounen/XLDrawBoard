@@ -104,3 +104,8 @@ public Bitmap save()
 
 和Xml代码一样，需要传入背景颜色的参数。
 
+***
+更新：添加绘制Bitmap到画板的功能
+~~~java
+board.drawOldBitmap(orgBitmap);
+~~~
