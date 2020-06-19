@@ -44,6 +44,9 @@ public class XLDrawBoard extends View {
     //用于反撤销功能而存储的线条
     private List<Graph> remove_graphs;
 
+    //保存将要绘制的Bitmap
+    private Bitmap bitmap;
+
     /**
      * 构造方法：Java代码初始化
      * @param context
@@ -143,9 +146,15 @@ public class XLDrawBoard extends View {
      * 重新绘制的过程
      * @param canvas
      */
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        //是否需要绘制Bitmap
+        if (bitmap != null){
+            canvas.drawBitmap(bitmap,getLeft(),getTop(),new Paint());
+        }
 
         //遍历Graphs数组
         for (Graph graph : graphs) {
@@ -244,6 +253,16 @@ public class XLDrawBoard extends View {
         }
 
         return bitmap;
+    }
+
+    /**
+     * 将一个Bitmap绘制到画板上
+     * @return
+     */
+    public void drawOldBitmap(Bitmap bitmap){
+        this.bitmap = bitmap;
+
+        invalidate();
     }
 
 

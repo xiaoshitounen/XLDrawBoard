@@ -1,6 +1,7 @@
 package swu.xl.drawboard;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -37,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.size_20:
                 board.setLineWidth(20);
+
+                //Bitmap orgBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+
+                //board.drawOldBitmap(orgBitmap);
+
                 break;
 
             case R.id.size_40:

@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -43,6 +45,9 @@ public class XLDrawBoard extends View {
 
     //用于反撤销功能而存储的线条
     private List<Graph> remove_graphs;
+
+    //保存将要绘制的Bitmap
+    private Bitmap bitmap;
 
     /**
      * 构造方法：Java代码初始化
@@ -147,6 +152,14 @@ public class XLDrawBoard extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        Log.d("TAG","来了");
+
+        //是否需要绘制Bitmap
+        if (bitmap != null){
+            Log.d("TAG","来了");
+            canvas.drawBitmap(bitmap,0,0,new Paint());
+        }
+
         //遍历Graphs数组
         for (Graph graph : graphs) {
             //绘制图形
@@ -245,6 +258,18 @@ public class XLDrawBoard extends View {
 
 
         return bitmap;
+    }
+
+    /**
+     * 将一个Bitmap绘制到画板上
+     * @return
+     */
+    public void drawOldBitmap(Bitmap bitmap){
+        this.bitmap = bitmap;
+
+
+
+        invalidate();
     }
 
     //setter / getter方法
