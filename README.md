@@ -1,6 +1,6 @@
 # XLDrawBoard
 
-详细内容博客地址:[自定义View-XLDrawBoard](https://fanandjiu.com/%E8%87%AA%E5%AE%9A%E4%B9%89View-XLDrawBoard/#more)
+详细内容博客地址:[自定义View-XLDrawBoard](http://www.fanandjiu.com/article/5833d3d1.html)
 
 简介：
 
